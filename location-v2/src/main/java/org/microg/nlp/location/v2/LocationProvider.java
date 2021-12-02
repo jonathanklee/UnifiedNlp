@@ -64,7 +64,12 @@ public class LocationProvider extends LocationProviderBase implements UnifiedLoc
         } catch (Exception ignored) {
         }
 
-        long autoTime = Math.max(requests.getInterval(), FASTEST_REFRESH_INTERVAL);
+        long interval = requests.getInterval();
+        long autoTime = 0;
+        if (interval > 0) {
+            autoTime = Math.max(interval, FASTEST_REFRESH_INTERVAL);
+        }
+
         boolean autoUpdate = requests.getReportLocation();
 
         Log.v(TAG, "using autoUpdate=" + autoUpdate + " autoTime=" + autoTime);
