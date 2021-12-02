@@ -444,6 +444,7 @@ class UnifiedLocationClient private constructor(context: Context) {
         for (request in requests) {
             if (request.interval <= 0) {
                 requestSingle = true
+                forceNextUpdate = true
                 continue
             }
             interval = min(interval, request.interval)
